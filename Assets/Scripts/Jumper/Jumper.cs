@@ -2,18 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DummyJumper : MonoBehaviour
+public class Jumper : MonoBehaviour
 {
-    public float walkSpeed ;
+
+    [Header("Speed Settings")]
+    public float walkSpeed;
+    public float jumpSpeed;
+
+
+    [Header("Status")]
     private float moveInput;
     public bool isGrounded;// check if game object is touching the platform
-    private Rigidbody2D rb;
-
-
-
-    public bool canJump;
     public float jumpValue = 0.0f;
-    
+
+    private Rigidbody2D rb;
 
     void Start()
     {
@@ -24,44 +26,58 @@ public class DummyJumper : MonoBehaviour
     {
         moveInput = Input.GetAxisRaw("Horizontal");
 
-
+        //walk
         if (jumpValue == 0.0f && isGrounded)
         {
             rb.velocity = new Vector2(moveInput * walkSpeed, rb.velocity.y);
         }
+        
 
-
-        if (Input.GetKey("space") && isGrounded && canJump)
+        //charge jump 
+        if ( (Input.GetKey("space") || (Input.GetKey("e") ) || (Input.GetKey("q")) ) && isGrounded)
         {
-            jumpValue += 0.1f;
+            if (jumpValue <= 10f) {
+                jumpValue += 0.1f;
+            }        
         }
 
-        if(Input.GetKeyDown("space") && isGrounded && canJump)
-        {
-            rb.velocity = new Vector2(0.0f, rb.velocity.y);
-        }
-
-        if (jumpValue >= 10f && isGrounded)
-        {
-            rb.velocity = new Vector2(0f, jumpValue);
-            jumpValue = 0.0f;
-            canJump = true;
-        }
-
+        //jump up
         if (Input.GetKeyUp("space"))
         {
-            if(isGrounded)
+            if (isGrounded)
             {
-                rb.velocity = new Vector2(0f, jumpValue);
-                jumpValue = 0.0f;
+                Jump();
             }
-            canJump = true;
+
         }
+        //jump right
+        else if (Input.GetKeyUp("e"))
+        {
+            if (isGrounded)
+            {
+                JumpRight();
+            }
+
+        }
+        //jump left
+        else if (Input.GetKeyUp("q"))
+        {
+            if (isGrounded)
+            {
+                JumpLeft();
+            }
+
+        }
+
+
+
+
     }
 
     void OnCollisionEnter2D(Collision2D col)
     {
         isGrounded = true;
+        jumpValue = 0f;
         print("enter");
     }
     void OnCollisionExit2D(Collision2D col)
@@ -70,12 +86,22 @@ public class DummyJumper : MonoBehaviour
         print("exit");
     }
 
-    void ResetJump()
-    {
-        canJump = false;
-        jumpValue = 0;
+    void resetJump() { 
+        jumpValue = 0.0f;
     }
-    
+
+    void Jump()
+    {
+        rb.velocity = new Vector2(0f, jumpValue * jumpSpeed);;
+    }
+    void JumpLeft()
+    {
+        rb.velocity = new Vector2(-walkSpeed, jumpValue * jumpSpeed);
+    }
+    void JumpRight()
+    {
+        rb.velocity = new Vector2(walkSpeed, jumpValue * jumpSpeed);
+    }
 
 }
 
