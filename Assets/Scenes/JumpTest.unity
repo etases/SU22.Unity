@@ -248,7 +248,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &709126849
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -357,7 +357,6 @@ MonoBehaviour:
   walkSpeed: 6
   jumpSpeed: 2
   isGrounded: 1
-  canJump: 0
   jumpValue: 0
 --- !u!95 &709126853
 Animator:
