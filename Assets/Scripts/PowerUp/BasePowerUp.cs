@@ -30,5 +30,5 @@ public abstract class BasePowerUp : MonoBehaviour
         Destroy(gameObject);
     }
 
-    protected abstract void HandleInteract(GameObject gameObject);
+    protected abstract void HandleInteract(GameObject collidedGameObject);
 }
