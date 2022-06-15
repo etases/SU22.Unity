@@ -4,41 +4,60 @@ using UnityEngine;
 
 public class Jumper : MonoBehaviour
 {
+    public const float dWalkSpeed = 6;
+    public const float dJumpSpeed = 3;
 
     [Header("Speed Settings")]
-    public float walkSpeed;
-    public float jumpSpeed;
+    public float walkSpeed = dWalkSpeed;
+    public float jumpSpeed = dJumpSpeed;
 
 
     [Header("Status")]
     private float moveInput;
-    public bool isGrounded;// check if game object is touching the platform
     public float jumpValue = 0.0f;
+    public bool isGrounded;// check if game object is touching the platform
+    public float posY;
 
     private Rigidbody2D rb;
+    private SpriteRenderer spRender;
+    private Animator anim;
 
     void Start()
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
+        spRender = gameObject.GetComponent<SpriteRenderer>();
+        anim = gameObject.GetComponent<Animator>();
+       
     }
 
     void Update()
     {
         moveInput = Input.GetAxisRaw("Horizontal");
 
+        //set animation
+        setAnim();
+
+        //flip
+        if (rb.velocity.x < 0)
+            spRender.flipX = true;
+        else if (rb.velocity.x > 0)
+            spRender.flipX = false;
+
         //walk
         if (jumpValue == 0.0f && isGrounded)
         {
             rb.velocity = new Vector2(moveInput * walkSpeed, rb.velocity.y);
         }
-        
+
+
 
         //charge jump 
-        if ( (Input.GetKey("space") || (Input.GetKey("e") ) || (Input.GetKey("q")) ) && isGrounded)
+        if ((Input.GetKey("space") || (Input.GetKey("e")) || (Input.GetKey("q"))) && isGrounded)
         {
-            if (jumpValue <= 10f) {
+            if (jumpValue <= 10f)
+            {
                 jumpValue += 0.1f;
-            }        
+            }
         }
 
         //jump up
@@ -68,10 +87,6 @@ public class Jumper : MonoBehaviour
             }
 
         }
-
-
-
-
     }
 
     void OnCollisionEnter2D(Collision2D col)
@@ -86,13 +101,14 @@ public class Jumper : MonoBehaviour
         print("exit");
     }
 
-    void resetJump() { 
+    void resetJump()
+    {
         jumpValue = 0.0f;
     }
 
     void Jump()
     {
-        rb.velocity = new Vector2(0f, jumpValue * jumpSpeed);;
+        rb.velocity = new Vector2(0f, jumpValue * jumpSpeed);
     }
     void JumpLeft()
     {
@@ -101,6 +117,44 @@ public class Jumper : MonoBehaviour
     void JumpRight()
     {
         rb.velocity = new Vector2(walkSpeed, jumpValue * jumpSpeed);
+    }
+
+    void setAnim()
+    {
+        //run
+        if (moveInput != 0 && isGrounded == true)
+        {
+            anim.SetBool("isRunning", true);
+        }
+        else
+        {
+            anim.SetBool("isRunning", false);
+        }
+
+        //charge
+        if (jumpValue > 0 && isGrounded == true)
+        {
+            anim.SetBool("isCharge", true);
+        }
+        else if (jumpValue > 0 && isGrounded == false)
+        {
+            anim.SetBool("isCharge", false);
+        }
+
+        //jump
+        if(rb.velocity.y>0)
+        {
+            anim.SetBool("isJumping", true);
+        }
+        else if(rb.velocity.y < 0)
+        {
+            anim.SetBool("isJumping", false);
+            anim.SetBool("isFalling", true);
+        }
+        else
+        {
+            anim.SetBool("isFalling", false);
+        }
     }
 
 }
