@@ -32,18 +32,25 @@ public class Jumper : MonoBehaviour
     {
         // Check Is Grounded
         isGrounded = rb.velocity.y == 0;
+        if (!isGrounded)
+        {
+            jumpValue = 0.0f;
+            jumpDirection = 0.0f;
+        }
 
         moveInput = Input.GetAxisRaw("Horizontal");
         var isJump = Input.GetAxisRaw("Jump") != 0;
 
-        //set animation
+        // set animation
         setAnim();
 
-        //flip
-        if (rb.velocity.x < 0)
-            spRender.flipX = true;
-        else if (rb.velocity.x > 0)
-            spRender.flipX = false;
+        // flip
+        spRender.flipX = rb.velocity.x switch
+        {
+            < 0 => true,
+            > 0 => false,
+            _ => spRender.flipX
+        };
 
         if (!isGrounded) return;
         if (isJump) // Charge
@@ -77,11 +84,12 @@ public class Jumper : MonoBehaviour
     {
         rb.velocity = new Vector2(jumpDirection, jumpValue * jumpSpeed);
         jumpValue = 0.0f;
+        jumpDirection = 0.0f;
     }
 
     void setAnim()
     {
-        anim.SetBool("isRunning", jumpValue == 0 && isGrounded);
+        anim.SetBool("isRunning", jumpValue == 0 && moveInput != 0 && isGrounded);
         anim.SetBool("isCharge", jumpValue > 0 && isGrounded);
         anim.SetBool("isJumping", !isGrounded && rb.velocity.y > 0);
         anim.SetBool("isFalling", !isGrounded && rb.velocity.y < 0);
