@@ -1,12 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class MovingPlatform : MonoBehaviour
+public class MovingPlatform : Platform
 {
     [SerializeField] private GameObject[] waypoints;
-    private int currentWaypoint = 0;
     [SerializeField] private float speed = 2.0f;
+    private int currentWaypoint;
 
     // Update is called once per frame
     private void Update()
