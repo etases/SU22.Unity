@@ -1,5 +1,7 @@
+using System;
 using UnityEngine;
 
+[RequireComponent(typeof(Collider2D))]
 public abstract class BasePowerUp : MonoBehaviour
 {
     [SerializeField] public string id = string.Empty;
@@ -9,15 +11,16 @@ public abstract class BasePowerUp : MonoBehaviour
     
     private void Awake()
     {
-        var collected = PlayerPrefs.GetInt(powerUpName, 0);
+        var collected = PlayerPrefs.GetInt(powerUpName, 1);
         if (collected != 1)
         {
             Destroy(gameObject);
+            return;
         }
-        else
-        {
-            PowerUpManager.AddEvent(m_PowerUpPickupEvent);
-        }
+        PowerUpManager.AddEvent(m_PowerUpPickupEvent);
+        var collider = GetComponent<Collider2D>();
+        if (!collider.isTrigger)
+            collider.isTrigger = true;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
