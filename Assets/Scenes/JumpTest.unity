@@ -244,11 +244,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 229970368}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b63c005270bfb64684a458f7a9a3201, type: 3}
+  m_Script: {fileID: 11500000, guid: 6520f12b1524b0643a70498cf668c7bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delayInactive: 2
-  delayActive: 2
+  delay: 1
 --- !u!1 &292526442
 GameObject:
   m_ObjectHideFlags: 0
