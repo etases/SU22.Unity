@@ -42,12 +42,12 @@ public class FollowCamera2D : MonoBehaviour
     {
         camera = GetComponent<Camera>();
         vertExtent = camera.orthographicSize;
-        horzExtent = vertExtent * Screen.width / Screen.height;
+        //horzExtent = vertExtent * Screen.width / Screen.height;
 
 
-        isFollowHorizontal = (followType & Direction.Horizontal) == Direction.Horizontal;
+        //isFollowHorizontal = (followType & Direction.Horizontal) == Direction.Horizontal;
         isFollowVertical = (followType & Direction.Vertical) == Direction.Vertical;
-        isBoundHorizontal = (boundType & Direction.Horizontal) == Direction.Horizontal;
+        //isBoundHorizontal = (boundType & Direction.Horizontal) == Direction.Horizontal;
         isBoundVertical = (boundType & Direction.Vertical) == Direction.Vertical;
         
         tempVec = Vector3.one;
@@ -67,7 +67,7 @@ public class FollowCamera2D : MonoBehaviour
         else
             tempVec.Set(transform.position.x, transform.position.y, transform.position.z);
 
-        if (isBoundHorizontal) tempVec.x = Mathf.Clamp(tempVec.x, leftBound + horzExtent, rightBound - horzExtent);
+        //if (isBoundHorizontal) tempVec.x = Mathf.Clamp(tempVec.x, leftBound + horzExtent, rightBound - horzExtent);
 
         if (isBoundVertical) tempVec.y = Mathf.Clamp(tempVec.y, lowerBound + vertExtent, upperBound - vertExtent);
 
