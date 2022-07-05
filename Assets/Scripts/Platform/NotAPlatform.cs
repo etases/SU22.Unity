@@ -1,12 +1,15 @@
 using System.Collections;
 using UnityEngine;
 
-public class TemporaryPlatform : Platform
+public class NotAPlatform : Platform
 {
-    public float delayInactive = 2f;
-    public float delayActive = 2f;
+    public float delay = 1f;
     private bool m_IsInAction;
     private SpriteRenderer m_SpriteRenderer;
+
+    public NotAPlatform() : base(true)
+    {
+    }
 
     protected override void Awake()
     {
@@ -29,9 +32,8 @@ public class TemporaryPlatform : Platform
     {
         if (m_IsInAction) yield break;
         m_IsInAction = true;
-        yield return new WaitForSeconds(delayInactive);
         SetActive(false);
-        yield return new WaitForSeconds(delayActive);
+        yield return new WaitForSeconds(delay);
         SetActive(true);
         m_IsInAction = false;
     }

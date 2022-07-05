@@ -31,7 +31,10 @@ public class Jumper : MonoBehaviour
     void Update()
     {
         // Check Is Grounded
-        isGrounded = rb.velocity.y == 0;
+        if (!isGrounded)
+        {
+            isGrounded = rb.velocity.magnitude == 0;
+        }
         if (!isGrounded)
         {
             jumpValue = 0.0f;
@@ -85,6 +88,7 @@ public class Jumper : MonoBehaviour
         rb.velocity = new Vector2(jumpDirection, jumpValue * jumpSpeed);
         jumpValue = 0.0f;
         jumpDirection = 0.0f;
+        isGrounded = false;
     }
 
     void setAnim()
