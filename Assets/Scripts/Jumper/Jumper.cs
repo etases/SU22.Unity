@@ -31,10 +31,18 @@ public class Jumper : MonoBehaviour
     void Update()
     {
         // Check Is Grounded
-        if (!isGrounded)
+        if (isGrounded)
         {
-            isGrounded = rb.velocity.magnitude == 0;
+            if (rb.velocity.y < -0.05)
+            {
+                isGrounded = false;
+            }
         }
+        else
+        {
+            isGrounded = rb.velocity.y == 0;
+        }
+
         if (!isGrounded)
         {
             jumpValue = 0.0f;
