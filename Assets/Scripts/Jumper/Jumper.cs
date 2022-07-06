@@ -4,10 +4,14 @@ public class Jumper : MonoBehaviour
 {
     public const float dWalkSpeed = 6;
     public const float dJumpSpeed = 3;
+    public const float dJumpCharge = 0.05f;
+    public const float dJumpChargeMax = 10f;
 
     [Header("Speed Settings")]
     public float walkSpeed = dWalkSpeed;
     public float jumpSpeed = dJumpSpeed;
+    public float jumpCharge = dJumpCharge;
+    public float jumpChargeMax = dJumpChargeMax;
 
 
     [Header("Status")]
@@ -73,9 +77,9 @@ public class Jumper : MonoBehaviour
                 _ => 0
             };
 
-            if (jumpValue <= 10f)
+            if (jumpValue <= jumpChargeMax)
             {
-                jumpValue += 0.1f;
+                jumpValue += jumpCharge;
             }
         }
         else
