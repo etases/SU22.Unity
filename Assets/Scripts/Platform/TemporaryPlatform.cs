@@ -1,17 +1,18 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.U2D;
 
 public class TemporaryPlatform : Platform
 {
     public float delayInactive = 2f;
     public float delayActive = 2f;
     private bool m_IsInAction;
-    private SpriteRenderer m_SpriteRenderer;
+    private SpriteShapeRenderer m_SpriteRenderer;
 
     protected override void Awake()
     {
         base.Awake();
-        m_SpriteRenderer = GetComponent<SpriteRenderer>();
+        m_SpriteRenderer = GetComponent<SpriteShapeRenderer>();
     }
 
     private void SetActive(bool active)
