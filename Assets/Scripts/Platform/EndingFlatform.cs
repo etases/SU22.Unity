@@ -1,10 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class EndingFlatform : Platform
 {
+    
+    public EndingFlatform() : base(true) {}
     
     protected override void HandleCollisionEnter(GameObject player)
     {
