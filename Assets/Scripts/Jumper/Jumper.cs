@@ -7,18 +7,23 @@ public class Jumper : MonoBehaviour
     public const float dJumpCharge = 0.05f;
     public const float dJumpChargeMax = 10f;
 
-    [Header("Speed Settings")] public float walkSpeed = dWalkSpeed;
-
+    [Header("Speed Settings")]
+    public float walkSpeed = dWalkSpeed;
     public float jumpSpeed = dJumpSpeed;
     public float jumpCharge = dJumpCharge;
     public float jumpChargeMax = dJumpChargeMax;
 
-    [Header("Status")] public float moveInput;
-
+    [Header("Status")]
+    public float moveInput;
     public float jumpValue;
     public float jumpDirection;
     public bool isGrounded; // check if game object is touching the platform
     private Animator anim;
+    
+    [Header("Serialize")]
+    [SerializeField]
+    public PhysicsMaterial2D normalMat;//value = 0
+    public PhysicsMaterial2D bouncyMat;//value = 0.7
 
     private Rigidbody2D rb;
     private SpriteRenderer spRender;
@@ -40,6 +45,10 @@ public class Jumper : MonoBehaviour
         else
         {
             isGrounded = rb.velocity.y == 0;
+            // change material
+            rb.sharedMaterial = rb.velocity.y > 0 ? bouncyMat : normalMat;
+            
+            // Event
             if (isGrounded)
                 SimpleEventManager.TriggerEvent("GroundEvent", new EventData
                 {
@@ -55,6 +64,17 @@ public class Jumper : MonoBehaviour
 
         moveInput = Input.GetAxisRaw("Horizontal");
         var isJump = Input.GetAxisRaw("Jump") != 0;
+        
+        // Short key Q & E
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            isJump = true;
+            moveInput = -1;
+        } else if (Input.GetKeyDown(KeyCode.E))
+        {
+            isJump = true;
+            moveInput = 1;
+        }
 
         // set animation
         SetAnim();
