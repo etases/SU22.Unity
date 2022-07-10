@@ -5,7 +5,7 @@ using UnityEngine;
 public class SimpleEventManager : MonoBehaviour
 {
     private static SimpleEventManager _simpleEventManager;
-    private Dictionary<string, Action<Dictionary<string, object>>> m_EventDictionary;
+    private Dictionary<string, Action<EventData>> m_EventDictionary;
 
     public static SimpleEventManager instance
     {
@@ -33,10 +33,10 @@ public class SimpleEventManager : MonoBehaviour
 
     private void Init()
     {
-        m_EventDictionary ??= new Dictionary<string, Action<Dictionary<string, object>>>();
+        m_EventDictionary ??= new Dictionary<string, Action<EventData>>();
     }
 
-    public static void StartListening(string eventName, Action<Dictionary<string, object>> listener)
+    public static void StartListening(string eventName, Action<EventData> listener)
     {
         if (instance.m_EventDictionary.TryGetValue(eventName, out var thisEvent))
         {
@@ -50,7 +50,7 @@ public class SimpleEventManager : MonoBehaviour
         }
     }
 
-    public static void StopListening(string eventName, Action<Dictionary<string, object>> listener)
+    public static void StopListening(string eventName, Action<EventData> listener)
     {
         if (_simpleEventManager == null) return;
         if (!instance.m_EventDictionary.TryGetValue(eventName, out var thisEvent)) return;
@@ -58,8 +58,12 @@ public class SimpleEventManager : MonoBehaviour
         instance.m_EventDictionary[eventName] = thisEvent;
     }
 
-    public static void TriggerEvent(string eventName, Dictionary<string, object> message)
+    public static void TriggerEvent(string eventName, EventData message)
     {
         if (instance.m_EventDictionary.TryGetValue(eventName, out var thisEvent)) thisEvent.Invoke(message);
     }
+}
+
+public class EventData : Dictionary<string, object>
+{
 }

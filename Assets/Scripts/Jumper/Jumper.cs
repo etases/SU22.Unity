@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Jumper : MonoBehaviour
@@ -42,7 +41,7 @@ public class Jumper : MonoBehaviour
         {
             isGrounded = rb.velocity.y == 0;
             if (isGrounded)
-                SimpleEventManager.TriggerEvent("GroundEvent", new Dictionary<string, object>
+                SimpleEventManager.TriggerEvent("GroundEvent", new EventData
                 {
                     {"jumper", this}
                 });
@@ -89,10 +88,13 @@ public class Jumper : MonoBehaviour
             else // Walk
             {
                 rb.velocity = new Vector2(moveInput * walkSpeed, rb.velocity.y);
-                SimpleEventManager.TriggerEvent("WalkEvent", new Dictionary<string, object>
+                if (moveInput != 0)
                 {
-                    {"jumper", this}
-                });
+                    SimpleEventManager.TriggerEvent("WalkEvent", new EventData
+                    {
+                        {"jumper", this}
+                    });
+                }
             }
         }
     }
@@ -100,7 +102,7 @@ public class Jumper : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D col)
     {
         if (col.gameObject.CompareTag("Wall"))
-            SimpleEventManager.TriggerEvent("HitWallEvent", new Dictionary<string, object>
+            SimpleEventManager.TriggerEvent("HitWallEvent", new EventData
             {
                 {"jumper", this},
                 {"wall", col.gameObject}
@@ -113,7 +115,7 @@ public class Jumper : MonoBehaviour
         jumpValue = 0.0f;
         jumpDirection = 0.0f;
         isGrounded = false;
-        SimpleEventManager.TriggerEvent("JumpEvent", new Dictionary<string, object>
+        SimpleEventManager.TriggerEvent("JumpEvent", new EventData
         {
             {"jumper", this}
         });

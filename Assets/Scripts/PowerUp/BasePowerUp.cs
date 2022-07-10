@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider2D))]
@@ -28,7 +27,7 @@ public abstract class BasePowerUp : MonoBehaviour
         if (!collisionGameObject.CompareTag("Player")) return;
         PlayerPrefs.SetInt(powerUpName, 1);
         HandleInteract(collisionGameObject);
-        SimpleEventManager.TriggerEvent("PowerPickup", new Dictionary<string, object>
+        SimpleEventManager.TriggerEvent("PowerPickup", new EventData
         {
             {"player", collisionGameObject},
             {"powerUp", this}
