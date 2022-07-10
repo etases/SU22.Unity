@@ -41,9 +41,8 @@ public class Jumper : MonoBehaviour
     void Update()
     {
         // init value 
-
         moveInput = Input.GetAxisRaw("Horizontal");
-        var isJump = Input.GetAxisRaw("Jump") != 0;
+        //var isJump = Input.GetAxisRaw("Jump") != 0;
 
         // check Is Grounded
         if (isGrounded)
@@ -68,15 +67,6 @@ public class Jumper : MonoBehaviour
             isGrounded = rb.velocity.y == 0;
         }
 
-        //// ????
-        //if (!isGrounded)
-        //{
-        //    jumpValue = 0.0f;
-        //    jumpDirection = 0.0f;
-        //}
-
-
-
         // set animation
         setAnim();
 
@@ -90,7 +80,9 @@ public class Jumper : MonoBehaviour
 
         //???
         if (!isGrounded) return;
-        if (isJump) // Charge
+
+        // Charge
+        if (((Input.GetKey("space") || (Input.GetKey("e")) || (Input.GetKey("q"))) && isGrounded))
         {
             jumpDirection = moveInput switch
             {
@@ -106,11 +98,34 @@ public class Jumper : MonoBehaviour
         }
         else
         {
-            if (jumpValue != 0) // Jump
+            // jump up
+            if (Input.GetKeyUp("space"))
             {
-                Jump();
+                if (isGrounded)
+                {
+                    Jump();
+                }
             }
-            else // Walk
+            // jump right
+            else if (Input.GetKeyUp("e"))
+            {
+                if (isGrounded)
+                {
+                    JumpRight();
+                }
+
+            }
+            // jump left
+            else if (Input.GetKeyUp("q"))
+            {
+                if (isGrounded)
+                {
+                    JumpLeft();
+                }
+
+            }
+            // Walk
+            else
             {
                 rb.velocity = new Vector2(moveInput * walkSpeed, rb.velocity.y);
             }
@@ -120,6 +135,21 @@ public class Jumper : MonoBehaviour
     void Jump()
     {
         rb.velocity = new Vector2(jumpDirection, jumpValue * jumpSpeed);
+        resetJump();
+
+    }
+    void JumpLeft()
+    {
+        rb.velocity = new Vector2(-walkSpeed, jumpValue * jumpSpeed);
+        resetJump();
+    }
+    void JumpRight()
+    {
+        rb.velocity = new Vector2(walkSpeed, jumpValue * jumpSpeed);
+        resetJump();
+    }
+    void resetJump()
+    {
         jumpValue = 0.0f;
         jumpDirection = 0.0f;
         isGrounded = false;
@@ -134,4 +164,10 @@ public class Jumper : MonoBehaviour
     }
 
 }
+
+
+
+
+
+
 
