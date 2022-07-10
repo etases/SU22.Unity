@@ -19,6 +19,11 @@ public class Jumper : MonoBehaviour
     public float jumpValue;
     public float jumpDirection;
     public bool isGrounded;// check if game object is touching the platform
+    
+    [Header("Serialize")]
+    [SerializeField]
+    public PhysicsMaterial2D normalMat;//value = 0
+    public PhysicsMaterial2D bouncyMat;//value = 0.7
 
     private Rigidbody2D rb;
     private SpriteRenderer spRender;
@@ -45,6 +50,8 @@ public class Jumper : MonoBehaviour
         else
         {
             isGrounded = rb.velocity.y == 0;
+            // change material
+            rb.sharedMaterial = rb.velocity.y > 0 ? bouncyMat : normalMat;
         }
 
         if (!isGrounded)
@@ -55,6 +62,17 @@ public class Jumper : MonoBehaviour
 
         moveInput = Input.GetAxisRaw("Horizontal");
         var isJump = Input.GetAxisRaw("Jump") != 0;
+        
+        // Short key Q & E
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            isJump = true;
+            moveInput = -1;
+        } else if (Input.GetKeyDown(KeyCode.E))
+        {
+            isJump = true;
+            moveInput = 1;
+        }
 
         // set animation
         setAnim();
@@ -112,4 +130,3 @@ public class Jumper : MonoBehaviour
     }
 
 }
-
