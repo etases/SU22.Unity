@@ -19,7 +19,7 @@ public class Jumper : MonoBehaviour
     public float jumpValue;
     public float jumpDirection;
     public bool isGrounded;// check if game object is touching the platform
-
+    
     [Header("Serialize")]
     [SerializeField]
     public PhysicsMaterial2D normalMat;//value = 0
@@ -29,22 +29,17 @@ public class Jumper : MonoBehaviour
     private SpriteRenderer spRender;
     private Animator anim;
 
-
     void Start()
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
         spRender = gameObject.GetComponent<SpriteRenderer>();
         anim = gameObject.GetComponent<Animator>();
-
+       
     }
 
     void Update()
     {
-        // init value 
-        moveInput = Input.GetAxisRaw("Horizontal");
-        //var isJump = Input.GetAxisRaw("Jump") != 0;
-
-        // check Is Grounded
+        // Check Is Grounded
         if (isGrounded)
         {
             if (rb.velocity.y < -0.05)
@@ -54,17 +49,29 @@ public class Jumper : MonoBehaviour
         }
         else
         {
-            // change material
-            if (rb.velocity.y > 0)
-            {
-                rb.sharedMaterial = bouncyMat;
-            }
-            else
-            {
-                rb.sharedMaterial = normalMat;
-            }
-            // ????
             isGrounded = rb.velocity.y == 0;
+            // change material
+            rb.sharedMaterial = rb.velocity.y > 0 ? bouncyMat : normalMat;
+        }
+
+        if (!isGrounded)
+        {
+            jumpValue = 0.0f;
+            jumpDirection = 0.0f;
+        }
+
+        moveInput = Input.GetAxisRaw("Horizontal");
+        var isJump = Input.GetAxisRaw("Jump") != 0;
+        
+        // Short key Q & E
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            isJump = true;
+            moveInput = -1;
+        } else if (Input.GetKeyDown(KeyCode.E))
+        {
+            isJump = true;
+            moveInput = 1;
         }
 
         // set animation
@@ -78,11 +85,8 @@ public class Jumper : MonoBehaviour
             _ => spRender.flipX
         };
 
-        //???
         if (!isGrounded) return;
-
-        // Charge
-        if (((Input.GetKey("space") || (Input.GetKey("e")) || (Input.GetKey("q"))) && isGrounded))
+        if (isJump) // Charge
         {
             jumpDirection = moveInput switch
             {
@@ -98,34 +102,11 @@ public class Jumper : MonoBehaviour
         }
         else
         {
-            // jump up
-            if (Input.GetKeyUp("space"))
+            if (jumpValue != 0) // Jump
             {
-                if (isGrounded)
-                {
-                    Jump();
-                }
+                Jump();
             }
-            // jump right
-            else if (Input.GetKeyUp("e"))
-            {
-                if (isGrounded)
-                {
-                    JumpRight();
-                }
-
-            }
-            // jump left
-            else if (Input.GetKeyUp("q"))
-            {
-                if (isGrounded)
-                {
-                    JumpLeft();
-                }
-
-            }
-            // Walk
-            else
+            else // Walk
             {
                 rb.velocity = new Vector2(moveInput * walkSpeed, rb.velocity.y);
             }
@@ -135,21 +116,6 @@ public class Jumper : MonoBehaviour
     void Jump()
     {
         rb.velocity = new Vector2(jumpDirection, jumpValue * jumpSpeed);
-        resetJump();
-
-    }
-    void JumpLeft()
-    {
-        rb.velocity = new Vector2(-walkSpeed, jumpValue * jumpSpeed);
-        resetJump();
-    }
-    void JumpRight()
-    {
-        rb.velocity = new Vector2(walkSpeed, jumpValue * jumpSpeed);
-        resetJump();
-    }
-    void resetJump()
-    {
         jumpValue = 0.0f;
         jumpDirection = 0.0f;
         isGrounded = false;
@@ -164,10 +130,3 @@ public class Jumper : MonoBehaviour
     }
 
 }
-
-
-
-
-
-
-
