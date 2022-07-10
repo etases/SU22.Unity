@@ -13,12 +13,12 @@ public class Jumper : MonoBehaviour
     public float jumpCharge = dJumpCharge;
     public float jumpChargeMax = dJumpChargeMax;
 
-
     [Header("Status")]
     public float moveInput;
     public float jumpValue;
     public float jumpDirection;
-    public bool isGrounded;// check if game object is touching the platform
+    public bool isGrounded; // check if game object is touching the platform
+    private Animator anim;
     
     [Header("Serialize")]
     [SerializeField]
@@ -27,31 +27,33 @@ public class Jumper : MonoBehaviour
 
     private Rigidbody2D rb;
     private SpriteRenderer spRender;
-    private Animator anim;
 
-    void Start()
+    private void Start()
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
         spRender = gameObject.GetComponent<SpriteRenderer>();
         anim = gameObject.GetComponent<Animator>();
-       
     }
 
-    void Update()
+    private void Update()
     {
         // Check Is Grounded
         if (isGrounded)
         {
-            if (rb.velocity.y < -0.05)
-            {
-                isGrounded = false;
-            }
+            if (rb.velocity.y < -0.05) isGrounded = false;
         }
         else
         {
             isGrounded = rb.velocity.y == 0;
             // change material
             rb.sharedMaterial = rb.velocity.y > 0 ? bouncyMat : normalMat;
+            
+            // Event
+            if (isGrounded)
+                SimpleEventManager.TriggerEvent("GroundEvent", new EventData
+                {
+                    {"jumper", this}
+                });
         }
 
         if (!isGrounded)
@@ -75,7 +77,7 @@ public class Jumper : MonoBehaviour
         }
 
         // set animation
-        setAnim();
+        SetAnim();
 
         // flip
         spRender.flipX = rb.velocity.x switch
@@ -95,10 +97,7 @@ public class Jumper : MonoBehaviour
                 _ => 0
             };
 
-            if (jumpValue <= jumpChargeMax)
-            {
-                jumpValue += jumpCharge;
-            }
+            if (jumpValue <= jumpChargeMax) jumpValue += jumpCharge;
         }
         else
         {
@@ -109,24 +108,44 @@ public class Jumper : MonoBehaviour
             else // Walk
             {
                 rb.velocity = new Vector2(moveInput * walkSpeed, rb.velocity.y);
+                if (moveInput != 0)
+                {
+                    SimpleEventManager.TriggerEvent("WalkEvent", new EventData
+                    {
+                        {"jumper", this}
+                    });
+                }
             }
         }
     }
 
-    void Jump()
+    private void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.gameObject.CompareTag("Wall"))
+            SimpleEventManager.TriggerEvent("HitWallEvent", new EventData
+            {
+                {"jumper", this},
+                {"wall", col.gameObject}
+            });
+    }
+
+    private void Jump()
     {
         rb.velocity = new Vector2(jumpDirection, jumpValue * jumpSpeed);
         jumpValue = 0.0f;
         jumpDirection = 0.0f;
         isGrounded = false;
+        SimpleEventManager.TriggerEvent("JumpEvent", new EventData
+        {
+            {"jumper", this}
+        });
     }
 
-    void setAnim()
+    private void SetAnim()
     {
         anim.SetBool("isRunning", jumpValue == 0 && moveInput != 0 && isGrounded);
         anim.SetBool("isCharge", jumpValue > 0 && isGrounded);
         anim.SetBool("isJumping", !isGrounded && rb.velocity.y > 0);
         anim.SetBool("isFalling", !isGrounded && rb.velocity.y < 0);
     }
-
 }

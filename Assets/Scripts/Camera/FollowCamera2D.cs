@@ -49,7 +49,7 @@ public class FollowCamera2D : MonoBehaviour
         isFollowVertical = (followType & Direction.Vertical) == Direction.Vertical;
         //isBoundHorizontal = (boundType & Direction.Horizontal) == Direction.Horizontal;
         isBoundVertical = (boundType & Direction.Vertical) == Direction.Vertical;
-        
+
         tempVec = Vector3.one;
     }
 
