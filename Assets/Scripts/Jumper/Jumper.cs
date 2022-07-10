@@ -20,21 +20,32 @@ public class Jumper : MonoBehaviour
     public float jumpDirection;
     public bool isGrounded;// check if game object is touching the platform
 
+    [Header("Serialize")]
+    [SerializeField]
+    public PhysicsMaterial2D normalMat;//value = 0
+    public PhysicsMaterial2D bouncyMat;//value = 0.7
+
     private Rigidbody2D rb;
     private SpriteRenderer spRender;
     private Animator anim;
+
 
     void Start()
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
         spRender = gameObject.GetComponent<SpriteRenderer>();
         anim = gameObject.GetComponent<Animator>();
-       
+
     }
 
     void Update()
     {
-        // Check Is Grounded
+        // init value 
+
+        moveInput = Input.GetAxisRaw("Horizontal");
+        var isJump = Input.GetAxisRaw("Jump") != 0;
+
+        // check Is Grounded
         if (isGrounded)
         {
             if (rb.velocity.y < -0.05)
@@ -44,17 +55,27 @@ public class Jumper : MonoBehaviour
         }
         else
         {
+            // change material
+            if (rb.velocity.y > 0)
+            {
+                rb.sharedMaterial = bouncyMat;
+            }
+            else
+            {
+                rb.sharedMaterial = normalMat;
+            }
+            // ????
             isGrounded = rb.velocity.y == 0;
         }
 
-        if (!isGrounded)
-        {
-            jumpValue = 0.0f;
-            jumpDirection = 0.0f;
-        }
+        //// ????
+        //if (!isGrounded)
+        //{
+        //    jumpValue = 0.0f;
+        //    jumpDirection = 0.0f;
+        //}
 
-        moveInput = Input.GetAxisRaw("Horizontal");
-        var isJump = Input.GetAxisRaw("Jump") != 0;
+
 
         // set animation
         setAnim();
@@ -67,6 +88,7 @@ public class Jumper : MonoBehaviour
             _ => spRender.flipX
         };
 
+        //???
         if (!isGrounded) return;
         if (isJump) // Charge
         {
