@@ -15,12 +15,14 @@ public class WinningScript : MonoBehaviour
         
         m_Storage.data.ResetPlayer();
         m_Storage.SaveData();
+        PlayerPrefs.DeleteAll();
     }
 
     public void BackBackPressed()
     {
         m_Storage.data.ResetPlayer();
         m_Storage.SaveData();
+        PlayerPrefs.DeleteAll();
         SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
     }
 }

@@ -78,5 +78,6 @@ public class PauseMenu : MonoBehaviour
         Debug.Log("RemakeToggleChange");
         storage.data.remake = remakeToggle.isOn;
         storage.data.ResetPlayer();
+        PlayerPrefs.DeleteAll();
     }
 }

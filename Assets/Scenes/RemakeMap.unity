@@ -4361,7 +4361,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walkSpeed: 6
   jumpSpeed: 2
-  jumpCharge: 0.05
+  jumpCharge: 0.1
   jumpChargeMax: 10
   moveInput: 0
   jumpValue: 0
