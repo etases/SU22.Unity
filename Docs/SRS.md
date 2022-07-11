@@ -79,7 +79,7 @@ JumpKingGame's goal is to create a Platform game for gamers with puzzle adventur
 
 ### 2.2 Overall Use-Case-Diagram
 
-![UseCaseDiagram](https://github.com/etases/SU22.Unity/blob/Document/Docs/src/SU22_Unity_Use-Case-Diagram.png)
+![UseCaseDiagram](https://github.com/etases/SU22.Unity/blob/Document/Docs/src/SU22_Unity_Use-Case-Diagram.drawio.png)
 
 ### 2.3 Use Cases
 
