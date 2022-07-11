@@ -3,7 +3,7 @@
 # Use-Case Specification: Player Controller  <!-- omit in toc -->
 
 ## Table of Contents <!-- omit in toc -->
-- [Player Controller Cube](#connect-controller-cube)
+- [Player Controller](#player-controller)
   - [1.1 Brief Description](#11-brief-description)
 - [2. Flow of Events](#2-flow-of-events)
   - [2.1 Basic Flow](#21-basic-flow)
@@ -17,7 +17,7 @@
 - [6. Extension Points](#6-extension-points)
 
 
-## Connect Controller Cube
+## Player Controller
 
 ### 1.1 Brief Description
 As a requirement every player has to be able to control the character maneuver.
