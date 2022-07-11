@@ -1,112 +1,1 @@
----
-Version:
-Date:
----
-
-# Game title
-
-## Revision List
-
-| Version | Author      | Date  | Comments |
-| ------: | :---------- | :---: | :------- |
-|   0.1.0 | author name | date  | comments |
-
-- [1. Introduction](#1-introduction)
-  - [1.1. Scope](#11-scope)
-  - [1.2. Type Conventions](#12-type-conventions)
-- [2. References](#2-references)
-- [3. Target system](#3-target-system)
-  - [3.1. DOS](#31-dos)
-  - [3.2. Windows 10](#32-windows-10)
-  - [3.3. Renderware](#33-renderware)
-- [4. Development System](#4-development-system)
-  - [4.1. Software](#41-software)
-- [5. Specification](#5-specification)
-  - [5.1. Concept](#51-concept)
-  - [5.2. Story](#52-story)
-  - [5.3. Game Structure](#53-game-structure)
-  - [5.4. Player](#54-player)
-  - [5.5. Action](#55-action)
-  - [5.6. Objective](#56-objective)
-  - [5.7. Graphic](#57-graphic)
-  - [5.8. Data storage](#58-data-storage)
-- [6. Gameplay](#6-gameplay)
-  - [6.1. World](#61-world)
-  - [6.2. Landscape](#62-landscape)
-  - [6.3. Ground Type](#63-ground-type)
-  - [6.4. Object Type](#64-object-type)
-  - [6.5. Control](#65-control)
-  - [6.6. Physic](#66-physic)
-- [7. UI](#7-ui)
-  - [7.1. Intro](#71-intro)
-  - [7.2. Menu](#72-menu)
-- [8. Development tools](#8-development-tools)
-  - [8.1. Editor](#81-editor)
-- [9. Team](#9-team)
-- [10. Time](#10-time)
-
-### 1. Introduction
-
-#### 1.1. Scope
-
-#### 1.2. Type Conventions
-
-### 2. References
-
-### 3. Target system
-
-#### 3.1. DOS
-
-#### 3.2. Windows 10
-
-#### 3.3. Renderware
-
-### 4. Development System
-
-#### 4.1. Software
-
-### 5. Specification
-
-#### 5.1. Concept
-
-#### 5.2. Story
-
-#### 5.3. Game Structure
-
-#### 5.4. Player
-
-#### 5.5. Action
-
-#### 5.6. Objective
-
-#### 5.7. Graphic
-
-#### 5.8. Data storage
-
-### 6. Gameplay
-
-#### 6.1. World
-
-#### 6.2. Landscape
-
-#### 6.3. Ground Type
-
-#### 6.4. Object Type
-
-#### 6.5. Control
-
-#### 6.6. Physic
-
-### 7. UI
-
-#### 7.1. Intro
-
-#### 7.2. Menu
-
-### 8. Development tools
-
-#### 8.1. Editor
-
-### 9. Team
-
-### 10. Time
+---Version: 1.0Date:---# NotJumpKing## Revision List| Version | Author      | Date  | Comments || ------: | :---------- | :---: | :------- ||   0.1.0 | author name | date  | comments |- [1. Introduction](#1-introduction)  - [1.1. Scope](#11-scope)  - [1.2. Type Conventions](#12-type-conventions)- [2. References](#2-references)- [3. Target system](#3-target-system)  - [3.1. Windows 10](#31-windows-10)  - [3.2. Windows 11](#32-windows-11)  - [3.3. Renderware](#33-renderware)- [4. Development System](#4-development-system)  - [4.1. Software](#41-software)- [5. Specification](#5-specification)  - [5.1. Concept](#51-concept)  - [5.2. Story](#52-story)  - [5.3. Game Structure](#53-game-structure)  - [5.4. Player](#54-player)  - [5.5. Action](#55-action)  - [5.6. Objective](#56-objective)  - [5.7. Graphic](#57-graphic)  - [5.8. Data storage](#58-data-storage)- [6. Gameplay](#6-gameplay)  - [6.1. World](#61-world)  - [6.2. Landscape](#62-landscape)  - [6.3. Ground Type](#63-ground-type)  - [6.4. Object Type](#64-object-type)  - [6.5. Control](#65-control)  - [6.6. Physic](#66-physic)- [7. UI](#7-ui)  - [7.1. Intro](#71-intro)  - [7.2. Menu](#72-menu)- [8. Development tools](#8-development-tools)  - [8.1. Editor](#81-editor)- [9. Team](#9-team)- [10. Time](#10-time)### 1. IntroductionThis document specifies a design for the gameplay of a game with provisional title NotJumpKing. It is based on elements discussed in various meetings held and involving by Huynh Quang Tien, #### 1.1. ScopeThis document is intended to be read by programmers involved in the design, implementation and testing of NotJumpKing.#### 1.2. Type Conventions### 2. ReferencesThings which have been discussed in a meeting are presented in this document using Times font, like this.### 3. Target systemJumpKing will be produced for the following flatform: PC Windows 10, PC Windows 11, Laptop Windows 10, Laptop Windows 11.#### 3.1. Windows 10The 32-bit or 64-bit Windows version will require at least ___ . It will use 8-bit or 16-bit graphics, depending on the card fitted.#### 3.2. Windows 11The 32-bit or 64-bit Windows version will require at least ___ . It will use 8-bit or 16-bit graphics, depending on the card fitted.#### 3.3. Renderware### 4. Development System#### 4.1. SoftwareBoth of the Windows version will be developed using Unity 2021.3.2f1 with C#.### 5. Specification#### 5.1. ConceptThe aim of NotJumpKing is to produce an entertainment, addictive and hard control activities.#### 5.2. StoryThe game is a story of a knight on his way to reach the top of the tower with his hope saving the kingdom's princess. By jumping from blocks to blocks carefully, not to fall  all the way down to the bottom where he started.#### 5.3. Game StructureThere will be many blocks with many different events taking place in that block if the knight jumps in, it may disappear after a period of time or become invisible. And the distance of the blocks is a challenge for the knight to calculate how to jump because if the jump is missed, the consequences will probably be very bad and worst is to return to the starting place. With the blocks being carefully calculated and arranged, making it difficult for players, so many knights will fall.#### 5.4. PlayerThe game will be played on PCs regardless of operating system. There is no software developed for smartphone players yet.#### 5.5. ActionPlayers can move left and right to choose the right position for each next action. The player can then jump and the distance of the jump depends on how long the player holds the jump key. The longer the player holds the jump key, the farther the game character will jump. Of course, during the fall, the game character will not be able to do anything but pray that the consequences will not be the worst.#### 5.6. ObjectiveThe game has only one purpose, which is to try to conquer the top of the tower and rescue the princess. Of course players can compete with each other over who can do it faster but timing is not supported in the game because we advocate for every player to play carefully for each action.#### 5.7. GraphicThe view will be inside the tower, but will be darker. Designed with an appearance that can make it difficult to see the jumping blocks will increase the difficulty of the game bit by bit. Game character design is not too detailed with simple animations.#### 5.8. Data storage##### 5.8.1. Sprites##### 5.8.2. CodeCode space will amount to 1MB.##### 5.8.3. SoundSpace for sound ( background, etc.) will amount to 400MB.### 6. Gameplay#### 6.1. WorldThe game world is encapsulated in a tower with a limited width but a lighthouse height. The moving space is not too comfortable but also not too oppressive for players to freely move and choose where to jump.#### 6.2. LandscapeThe blocks that help the player stand up to make a jump will have a meticulously aligned width. With the width of each block is different and there is no principle other than making the player feel difficult with his decision.#### 6.3. Ground TypeType of ground will include:#### 6.4. Object TypeOn the way to the top of the tower there will be countless coins and powerup points that "help" the player. With the coins will be scored for the leaderboard and the powerup points give the player the ability to increase the movement speed and increase the height of each jump. There are also points to clear the high jump status for players who can choose to continue to be stimulated with risky high jumps and return to the ground.#### 6.5. ControlThe game will be controlled by keyboard.The controls will be:- Turn left- Turn right- Jump- Jump left- Jump right#### 6.6. PhysicThe physical system will be similar to real life with the physical interaction between objects as well as gravity making the "falls" somewhat more painful.### 7. UI#### 7.1. IntroThere will be a video introduction to the game.#### 7.2. MenuThe game will use a simple menu system for selecting options.### 8. Development tools#### 8.1. Editor### 9. TeamProject Manager:Backend Programming:UI Design:Testing:### 10. TimeOfficial Start Date:Complete Game Design:Sprint 1:Sprint 2:End of Project:
