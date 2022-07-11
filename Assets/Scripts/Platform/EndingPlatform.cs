@@ -1,9 +1,9 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class EndingFlatform : Platform
+public class EndingPlatform : Platform
 {
-    public EndingFlatform() : base(true)
+    public EndingPlatform() : base(true)
     {
     }
 

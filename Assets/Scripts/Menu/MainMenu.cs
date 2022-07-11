@@ -5,11 +5,12 @@ public class MainMenu : MonoBehaviour
 {
     public void StartGame()
     {
-        SceneManager.LoadScene("DraftMap", LoadSceneMode.Single);
+        SceneManager.LoadScene("LoadingScene", LoadSceneMode.Single);
     }
 
     public void OpenSettings()
     {
+        PauseMenu.gameIsPaused = false;
         SceneManager.LoadScene("PauseMenu", LoadSceneMode.Single);
     }
 }

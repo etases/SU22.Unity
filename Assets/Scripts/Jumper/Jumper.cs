@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Jumper : MonoBehaviour
 {
@@ -27,16 +29,71 @@ public class Jumper : MonoBehaviour
 
     private Rigidbody2D rb;
     private SpriteRenderer spRender;
+    private Storage storage;
+    private SimpleEventManager eventManager;
 
     private void Start()
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
         spRender = gameObject.GetComponent<SpriteRenderer>();
         anim = gameObject.GetComponent<Animator>();
+        storage = FindObjectOfType<Storage>();
+        if (storage == null)
+        {
+            throw new Exception("Storage not found");
+        }
+        if (storage.data.hasPlayerSaved)
+        {
+            transform.position = storage.data.location;
+            rb.velocity = storage.data.velocity;
+            isGrounded = storage.data.isGrounded;
+            jumpSpeed = storage.data.jumpSpeed;
+            walkSpeed = storage.data.walkSpeed;
+        }
+
+        eventManager = FindObjectOfType<SimpleEventManager>();
+        if (eventManager == null)
+        {
+            throw new Exception("No event manager found");
+        }
     }
 
     private void Update()
     {
+        if (storage != null)
+        {
+            if (StaticVariables.shouldLoadPlayerValue)
+            {
+                if (storage.data.hasPlayerSaved)
+                {
+                    transform.position = storage.data.location;
+                    rb.velocity = storage.data.velocity;
+                    isGrounded = storage.data.isGrounded;
+                    jumpSpeed = storage.data.jumpSpeed;
+                    walkSpeed = storage.data.walkSpeed;
+                    Debug.Log("Loaded data value");
+                }
+                StaticVariables.shouldLoadPlayerValue = false;
+            }
+            else
+            {
+                storage.data.hasPlayerSaved = true;
+                storage.data.location = transform.position;
+                storage.data.velocity = rb.velocity;
+                storage.data.isGrounded = isGrounded;
+                storage.data.jumpSpeed = jumpSpeed;
+                storage.data.walkSpeed = walkSpeed;
+            }
+        }
+        
+        if (Input.GetKeyDown("escape"))
+        {
+            StaticVariables.shouldLoadPlayerValue = true;
+            PauseMenu.gameIsPaused = true;
+            SceneManager.LoadScene("PauseMenu", LoadSceneMode.Single);
+            return;
+        }
+        
         // Check Is Grounded
         if (isGrounded)
         {
@@ -50,7 +107,7 @@ public class Jumper : MonoBehaviour
             
             // Event
             if (isGrounded)
-                SimpleEventManager.TriggerEvent("GroundEvent", new EventData
+                eventManager.TriggerEvent("GroundEvent", new EventData
                 {
                     {"jumper", this}
                 });
@@ -66,11 +123,11 @@ public class Jumper : MonoBehaviour
         var isJump = Input.GetAxisRaw("Jump") != 0;
         
         // Short key Q & E
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKey(KeyCode.Q))
         {
             isJump = true;
             moveInput = -1;
-        } else if (Input.GetKeyDown(KeyCode.E))
+        } else if (Input.GetKey(KeyCode.E))
         {
             isJump = true;
             moveInput = 1;
@@ -110,7 +167,7 @@ public class Jumper : MonoBehaviour
                 rb.velocity = new Vector2(moveInput * walkSpeed, rb.velocity.y);
                 if (moveInput != 0)
                 {
-                    SimpleEventManager.TriggerEvent("WalkEvent", new EventData
+                    eventManager.TriggerEvent("WalkEvent", new EventData
                     {
                         {"jumper", this}
                     });
@@ -122,7 +179,7 @@ public class Jumper : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D col)
     {
         if (col.gameObject.CompareTag("Wall"))
-            SimpleEventManager.TriggerEvent("HitWallEvent", new EventData
+            eventManager.TriggerEvent("HitWallEvent", new EventData
             {
                 {"jumper", this},
                 {"wall", col.gameObject}
@@ -135,7 +192,7 @@ public class Jumper : MonoBehaviour
         jumpValue = 0.0f;
         jumpDirection = 0.0f;
         isGrounded = false;
-        SimpleEventManager.TriggerEvent("JumpEvent", new EventData
+        eventManager.TriggerEvent("JumpEvent", new EventData
         {
             {"jumper", this}
         });

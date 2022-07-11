@@ -12,6 +12,12 @@ EditorBuildSettings:
     path: Assets/Scenes/PauseMenu.unity
     guid: d5d06553ed14ac770a830a8552967d5a
   - enabled: 1
-    path: Assets/Scenes/DraftMap.unity
+    path: Assets/Scenes/LoadingScene.unity
+    guid: 707b27a7ba9b71a4e8159fb213ad3100
+  - enabled: 1
+    path: Assets/Scenes/NormalMap.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/RemakeMap.unity
+    guid: 7908f021eb5f25b428ec311c6cba92cd
   m_configObjects: {}

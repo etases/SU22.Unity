@@ -3,46 +3,50 @@ using UnityEngine;
 
 public class Storage : MonoBehaviour
 {
-    private string _path;
+    public bool saveOnDestroy;
+    private string m_Path;
     // Start is called before the first frame update
-    public Data Data { get; private set; }
+    public Data data { get; private set; }
 
-    void Awake()
+    private void Awake()
     {
-        _path = Application.persistentDataPath + "/data.json";
+        m_Path = Application.persistentDataPath + "/data.json";
         LoadData();
     }
 
-    void LoadData()
+    private void LoadData()
     {
-        if (File.Exists(_path))
+        if (File.Exists(m_Path))
         {
-            string dataAsJson = File.ReadAllText(_path);
-            Data = JsonUtility.FromJson<Data>(dataAsJson);
-            Debug.Log("Loaded data from " + _path);
+            var dataAsJson = File.ReadAllText(m_Path);
+            data = JsonUtility.FromJson<Data>(dataAsJson);
+            Debug.Log("Loaded data from " + m_Path);
         }
-        else
-        {
-            Data = new();
-            Debug.Log("Created new data");
-        }
+
+        if (data != null) return;
+        data = new Data();
+        Debug.Log("Created new data");
     }
 
     public void SaveData()
     {
-        string dataAsJson = JsonUtility.ToJson(Data, true);
-        File.WriteAllText(_path, dataAsJson);
+        var dataAsJson = JsonUtility.ToJson(data, true);
+        File.WriteAllText(m_Path, dataAsJson);
     }
 
     public void ResetData()
     {
-        Data = new();
+        data = new Data();
         SaveData();
     }
 
-    void OnDestroy()
+    private void OnDestroy()
     {
-        SaveData();
+        Debug.Log("Saving data");
+        if (saveOnDestroy)
+        {
+            SaveData();
+        }
     }
 }
 
@@ -50,5 +54,21 @@ public class Data
 {
     public float bgm = 1;
     public float sfx = 1;
-    public string location = string.Empty;
+    public bool remake = false;
+    public bool hasPlayerSaved;
+    public Vector3 location;
+    public Vector2 velocity = Vector2.zero;
+    public bool isGrounded;
+    public float jumpSpeed = Jumper.dJumpSpeed;
+    public float walkSpeed = Jumper.dWalkSpeed;
+
+    public void ResetPlayer()
+    {
+        hasPlayerSaved = false;
+        location = Vector3.zero;
+        velocity = Vector2.zero;
+        isGrounded = false;
+        jumpSpeed = Jumper.dJumpSpeed;
+        walkSpeed = Jumper.dWalkSpeed;
+    }
 }

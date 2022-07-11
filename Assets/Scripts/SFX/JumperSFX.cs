@@ -16,7 +16,8 @@ public class JumperSFX : MonoBehaviour
     private Action<EventData> m_OnHitWall;
     private AudioSource m_AudioSource;
     private bool m_IsWalkSoundPlaying;
-    
+    private SimpleEventManager m_EventManager;
+
     private void PlaySound(AudioClip clip)
     {
         m_AudioSource.clip = clip;
@@ -35,6 +36,13 @@ public class JumperSFX : MonoBehaviour
     private void Start()
     {
         m_AudioSource = GetComponent<AudioSource>();
+        m_EventManager = FindObjectOfType<SimpleEventManager>();
+
+        var storage = FindObjectOfType<Storage>();
+        if (storage != null)
+        {
+            m_AudioSource.volume = storage.data.sfx;
+        }
 
         m_OnJump = _ =>
         {
@@ -52,18 +60,24 @@ public class JumperSFX : MonoBehaviour
         {
             PlaySound(hitWallSound);
         };
-        
-        SimpleEventManager.StartListening("GroundEvent", m_OnGround);
-        SimpleEventManager.StartListening("JumpEvent", m_OnJump);
-        SimpleEventManager.StartListening("WalkEvent", m_OnWalk);
-        SimpleEventManager.StartListening("HitWallEvent", m_OnHitWall);
+
+        if (m_EventManager != null)
+        {
+            m_EventManager.StartListening("GroundEvent", m_OnGround);
+            m_EventManager.StartListening("JumpEvent", m_OnJump);
+            m_EventManager.StartListening("WalkEvent", m_OnWalk);
+            m_EventManager.StartListening("HitWallEvent", m_OnHitWall);
+        }
     }
     
     private void OnDestroy()
     {
-        SimpleEventManager.StopListening("GroundEvent", m_OnGround);
-        SimpleEventManager.StopListening("JumpEvent", m_OnJump);
-        SimpleEventManager.StopListening("WalkEvent", m_OnWalk);
-        SimpleEventManager.StopListening("HitWallEvent", m_OnHitWall);
+        if (m_EventManager != null)
+        {
+            m_EventManager.StopListening("GroundEvent", m_OnGround);
+            m_EventManager.StopListening("JumpEvent", m_OnJump);
+            m_EventManager.StopListening("WalkEvent", m_OnWalk);
+            m_EventManager.StopListening("HitWallEvent", m_OnHitWall);
+        }
     }
 }
