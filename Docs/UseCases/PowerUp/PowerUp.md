@@ -29,11 +29,11 @@ Character values can change when interacting with an power up source, which can 
 
 #### 2.1.1 Activity Diagram
 
-![Activity Diagram - Connect Controller Cube](./AD_ConnectCube.svg)
+![Activity Diagram - Connect Controller Cube](./AD_PowerUp.png)
 
 #### 2.1.2 Mock Up
 
-![Title Menu](../../images/TitleMenu.gif)
+
 
 ## 3. Special Requirements
 
