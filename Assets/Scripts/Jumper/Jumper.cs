@@ -8,6 +8,7 @@ public class Jumper : MonoBehaviour
     public const float dJumpSpeed = 3;
     public const float dJumpCharge = 0.05f;
     public const float dJumpChargeMax = 10f;
+    private static bool _shouldLoadPlayerValue;
 
     [Header("Speed Settings")] public float walkSpeed = dWalkSpeed;
 
@@ -50,7 +51,7 @@ public class Jumper : MonoBehaviour
     {
         if (storage != null)
         {
-            if (StaticVariables.shouldLoadPlayerValue)
+            if (_shouldLoadPlayerValue)
             {
                 if (storage.data.hasPlayerSaved)
                 {
@@ -62,7 +63,7 @@ public class Jumper : MonoBehaviour
                     Debug.Log("Loaded data value");
                 }
 
-                StaticVariables.shouldLoadPlayerValue = false;
+                _shouldLoadPlayerValue = false;
             }
             else
             {
@@ -77,7 +78,7 @@ public class Jumper : MonoBehaviour
 
         if (Input.GetKeyDown("escape"))
         {
-            StaticVariables.shouldLoadPlayerValue = true;
+            _shouldLoadPlayerValue = true;
             PauseMenu.gameIsPaused = true;
             SceneManager.LoadScene("PauseMenu", LoadSceneMode.Single);
             return;

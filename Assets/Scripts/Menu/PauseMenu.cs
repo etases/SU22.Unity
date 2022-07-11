@@ -1,6 +1,8 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -19,6 +21,14 @@ public class PauseMenu : MonoBehaviour
         UpdateValues();
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown("escape"))
+        {
+            Return();
+        }
+    }
+
     private void UpdateValues()
     {
         bgmToggle.isOn = storage.data.bgm > 0;
@@ -29,11 +39,16 @@ public class PauseMenu : MonoBehaviour
         remakeToggle.onValueChanged.AddListener(_ => RemakeToggleChange());
     }
 
-    public void Home()
+    public void MainMenu()
+    {
+        SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
+    }
+
+    public void Return()
     {
         SceneManager.LoadScene(gameIsPaused ? "LoadingScene" : "MainMenu", LoadSceneMode.Single);
     }
-
+    
     public void BGMSliderChange()
     {
         storage.data.bgm = bgmSlider.value;
