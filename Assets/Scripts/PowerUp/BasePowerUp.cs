@@ -26,7 +26,7 @@ public abstract class BasePowerUp : MonoBehaviour
     {
         var collisionGameObject = collision.gameObject;
         if (!collisionGameObject.CompareTag("Player")) return;
-        PlayerPrefs.SetInt(powerUpName, 1);
+        PlayerPrefs.SetInt(powerUpName, 0);
         HandleInteract(collisionGameObject);
         SimpleEventManager.TriggerEvent("PowerPickup", new EventData
         {
