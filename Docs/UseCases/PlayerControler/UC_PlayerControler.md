@@ -41,7 +41,7 @@ The title and the escape menu include a button for this function.
 
 ## 4. Preconditions
 
-## 4.1 Level loaded
+### 4.1 Level loaded
 A level has to be loaded and the game has to be unpaused.
 
 ## 5. Postconditions
