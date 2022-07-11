@@ -30,7 +30,6 @@
     - [3.6 Design Constraints](#36-design-constraints)
       - [3.6.1 Development tools](#361-development-tools)
       - [3.6.2 Unity](#362-unity)
-      - [3.6.3 Arduino IDE](#363-arduino-ide)
     - [3.7 Purchased Components](#37-purchased-components)
     - [3.8 Interfaces](#39-interfaces)
       - [3.8.1 User Interfaces](#391-user-interfaces)
