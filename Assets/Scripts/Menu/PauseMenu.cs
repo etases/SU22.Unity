@@ -1,19 +1,18 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using Random = UnityEngine.Random;
 
 public class PauseMenu : MonoBehaviour
 {
     public static bool gameIsPaused = false;
-    
+
     public Storage storage;
     public Slider bgmSlider;
     public Slider sfxSlider;
     public Toggle bgmToggle;
     public Toggle sfxToggle;
     public Toggle remakeToggle;
-    
+
     // Start is called before the first frame update
     private void Start()
     {
@@ -58,7 +57,7 @@ public class PauseMenu : MonoBehaviour
         storage.data.sfx = sfxToggle.isOn ? 1 : 0;
         sfxSlider.value = storage.data.sfx > 0 ? Random.Range(0.1f, 1) : 0;
     }
-    
+
     private void RemakeToggleChange()
     {
         Debug.Log("RemakeToggleChange");

@@ -4,7 +4,9 @@ using UnityEngine;
 public class Storage : MonoBehaviour
 {
     public bool saveOnDestroy;
+
     private string m_Path;
+
     // Start is called before the first frame update
     public Data data { get; private set; }
 
@@ -12,6 +14,12 @@ public class Storage : MonoBehaviour
     {
         m_Path = Application.persistentDataPath + "/data.json";
         LoadData();
+    }
+
+    private void OnDestroy()
+    {
+        Debug.Log("Saving data");
+        if (saveOnDestroy) SaveData();
     }
 
     private void LoadData()
@@ -39,27 +47,18 @@ public class Storage : MonoBehaviour
         data = new Data();
         SaveData();
     }
-
-    private void OnDestroy()
-    {
-        Debug.Log("Saving data");
-        if (saveOnDestroy)
-        {
-            SaveData();
-        }
-    }
 }
 
 public class Data
 {
     public float bgm = 1;
-    public float sfx = 1;
-    public bool remake = false;
     public bool hasPlayerSaved;
-    public Vector3 location;
-    public Vector2 velocity = Vector2.zero;
     public bool isGrounded;
     public float jumpSpeed = Jumper.dJumpSpeed;
+    public Vector3 location;
+    public bool remake = false;
+    public float sfx = 1;
+    public Vector2 velocity = Vector2.zero;
     public float walkSpeed = Jumper.dWalkSpeed;
 
     public void ResetPlayer()

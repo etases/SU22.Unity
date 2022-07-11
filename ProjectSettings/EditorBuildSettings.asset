@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/RemakeMap.unity
     guid: 7908f021eb5f25b428ec311c6cba92cd
+  - enabled: 1
+    path: Assets/Scenes/WinningScene.unity
+    guid: e81968b56370e5348af0ab7df6d14cca
   m_configObjects: {}

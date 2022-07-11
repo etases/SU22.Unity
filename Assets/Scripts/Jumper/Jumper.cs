@@ -9,28 +9,26 @@ public class Jumper : MonoBehaviour
     public const float dJumpCharge = 0.05f;
     public const float dJumpChargeMax = 10f;
 
-    [Header("Speed Settings")]
-    public float walkSpeed = dWalkSpeed;
+    [Header("Speed Settings")] public float walkSpeed = dWalkSpeed;
+
     public float jumpSpeed = dJumpSpeed;
     public float jumpCharge = dJumpCharge;
     public float jumpChargeMax = dJumpChargeMax;
 
-    [Header("Status")]
-    public float moveInput;
+    [Header("Status")] public float moveInput;
+
     public float jumpValue;
     public float jumpDirection;
     public bool isGrounded; // check if game object is touching the platform
+
+    [Header("Serialize")] [SerializeField] public PhysicsMaterial2D normalMat; //value = 0
+
+    public PhysicsMaterial2D bouncyMat; //value = 0.7
     private Animator anim;
-    
-    [Header("Serialize")]
-    [SerializeField]
-    public PhysicsMaterial2D normalMat;//value = 0
-    public PhysicsMaterial2D bouncyMat;//value = 0.7
 
     private Rigidbody2D rb;
     private SpriteRenderer spRender;
     private Storage storage;
-    private SimpleEventManager eventManager;
 
     private void Start()
     {
@@ -38,24 +36,14 @@ public class Jumper : MonoBehaviour
         spRender = gameObject.GetComponent<SpriteRenderer>();
         anim = gameObject.GetComponent<Animator>();
         storage = FindObjectOfType<Storage>();
-        if (storage == null)
-        {
-            throw new Exception("Storage not found");
-        }
-        if (storage.data.hasPlayerSaved)
-        {
-            transform.position = storage.data.location;
-            rb.velocity = storage.data.velocity;
-            isGrounded = storage.data.isGrounded;
-            jumpSpeed = storage.data.jumpSpeed;
-            walkSpeed = storage.data.walkSpeed;
-        }
+        if (storage == null) throw new Exception("Storage not found");
 
-        eventManager = FindObjectOfType<SimpleEventManager>();
-        if (eventManager == null)
-        {
-            throw new Exception("No event manager found");
-        }
+        if (!storage.data.hasPlayerSaved) return;
+        transform.position = storage.data.location;
+        rb.velocity = storage.data.velocity;
+        isGrounded = storage.data.isGrounded;
+        jumpSpeed = storage.data.jumpSpeed;
+        walkSpeed = storage.data.walkSpeed;
     }
 
     private void Update()
@@ -73,6 +61,7 @@ public class Jumper : MonoBehaviour
                     walkSpeed = storage.data.walkSpeed;
                     Debug.Log("Loaded data value");
                 }
+
                 StaticVariables.shouldLoadPlayerValue = false;
             }
             else
@@ -85,7 +74,7 @@ public class Jumper : MonoBehaviour
                 storage.data.walkSpeed = walkSpeed;
             }
         }
-        
+
         if (Input.GetKeyDown("escape"))
         {
             StaticVariables.shouldLoadPlayerValue = true;
@@ -93,7 +82,7 @@ public class Jumper : MonoBehaviour
             SceneManager.LoadScene("PauseMenu", LoadSceneMode.Single);
             return;
         }
-        
+
         // Check Is Grounded
         if (isGrounded)
         {
@@ -104,10 +93,10 @@ public class Jumper : MonoBehaviour
             isGrounded = rb.velocity.y == 0;
             // change material
             rb.sharedMaterial = rb.velocity.y > 0 ? bouncyMat : normalMat;
-            
+
             // Event
             if (isGrounded)
-                eventManager.TriggerEvent("GroundEvent", new EventData
+                SimpleEventManager.TriggerEvent("GroundEvent", new EventData
                 {
                     {"jumper", this}
                 });
@@ -121,13 +110,14 @@ public class Jumper : MonoBehaviour
 
         moveInput = Input.GetAxisRaw("Horizontal");
         var isJump = Input.GetAxisRaw("Jump") != 0;
-        
+
         // Short key Q & E
         if (Input.GetKey(KeyCode.Q))
         {
             isJump = true;
             moveInput = -1;
-        } else if (Input.GetKey(KeyCode.E))
+        }
+        else if (Input.GetKey(KeyCode.E))
         {
             isJump = true;
             moveInput = 1;
@@ -166,12 +156,10 @@ public class Jumper : MonoBehaviour
             {
                 rb.velocity = new Vector2(moveInput * walkSpeed, rb.velocity.y);
                 if (moveInput != 0)
-                {
-                    eventManager.TriggerEvent("WalkEvent", new EventData
+                    SimpleEventManager.TriggerEvent("WalkEvent", new EventData
                     {
                         {"jumper", this}
                     });
-                }
             }
         }
     }
@@ -179,7 +167,7 @@ public class Jumper : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D col)
     {
         if (col.gameObject.CompareTag("Wall"))
-            eventManager.TriggerEvent("HitWallEvent", new EventData
+            SimpleEventManager.TriggerEvent("HitWallEvent", new EventData
             {
                 {"jumper", this},
                 {"wall", col.gameObject}
@@ -192,7 +180,7 @@ public class Jumper : MonoBehaviour
         jumpValue = 0.0f;
         jumpDirection = 0.0f;
         isGrounded = false;
-        eventManager.TriggerEvent("JumpEvent", new EventData
+        SimpleEventManager.TriggerEvent("JumpEvent", new EventData
         {
             {"jumper", this}
         });

@@ -4,37 +4,63 @@ using UnityEngine;
 
 public class SimpleEventManager : MonoBehaviour
 {
+    private static SimpleEventManager _simpleEventManager;
     private Dictionary<string, Action<EventData>> m_EventDictionary;
 
-    private void Awake()
+    public static SimpleEventManager instance
+    {
+        get
+        {
+            if (_simpleEventManager) return _simpleEventManager;
+
+            _simpleEventManager = FindObjectOfType(typeof(SimpleEventManager)) as SimpleEventManager;
+
+            if (!_simpleEventManager)
+            {
+                Debug.LogError("There needs to be one active SimpleEventManager script on a GameObject in your scene.");
+            }
+            else
+            {
+                _simpleEventManager.Init();
+
+                //  Sets this to not be destroyed when reloading scene
+                DontDestroyOnLoad(_simpleEventManager);
+            }
+
+            return _simpleEventManager;
+        }
+    }
+
+    private void Init()
     {
         m_EventDictionary ??= new Dictionary<string, Action<EventData>>();
     }
 
-    public void StartListening(string eventName, Action<EventData> listener)
+    public static void StartListening(string eventName, Action<EventData> listener)
     {
-        if (m_EventDictionary.TryGetValue(eventName, out var thisEvent))
+        if (instance.m_EventDictionary.TryGetValue(eventName, out var thisEvent))
         {
             thisEvent += listener;
-            m_EventDictionary[eventName] = thisEvent;
+            instance.m_EventDictionary[eventName] = thisEvent;
         }
         else
         {
             thisEvent += listener;
-            m_EventDictionary.Add(eventName, thisEvent);
+            instance.m_EventDictionary.Add(eventName, thisEvent);
         }
     }
 
-    public void StopListening(string eventName, Action<EventData> listener)
+    public static void StopListening(string eventName, Action<EventData> listener)
     {
-        if (!m_EventDictionary.TryGetValue(eventName, out var thisEvent)) return;
+        if (_simpleEventManager == null) return;
+        if (!instance.m_EventDictionary.TryGetValue(eventName, out var thisEvent)) return;
         thisEvent -= listener;
-        m_EventDictionary[eventName] = thisEvent;
+        instance.m_EventDictionary[eventName] = thisEvent;
     }
 
-    public void TriggerEvent(string eventName, EventData message)
+    public static void TriggerEvent(string eventName, EventData message)
     {
-        if (m_EventDictionary.TryGetValue(eventName, out var thisEvent)) thisEvent.Invoke(message);
+        if (instance.m_EventDictionary.TryGetValue(eventName, out var thisEvent)) thisEvent.Invoke(message);
     }
 }
 

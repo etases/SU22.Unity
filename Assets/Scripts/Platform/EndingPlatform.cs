@@ -9,6 +9,6 @@ public class EndingPlatform : Platform
 
     protected override void HandleCollisionEnter(GameObject player)
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene("WinningScene", LoadSceneMode.Single);
     }
 }
