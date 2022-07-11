@@ -29,11 +29,11 @@ The title and the escape menu include a button for this function.
 
 #### 2.1.1 Activity Diagram
 
-![Activity Diagram - Connect Controller Cube](./AD_ConnectCube.svg)
+![Activity Diagram - Connect Controller Cube](./AD_PlayerControler.png)
 
 #### 2.1.2 Mock Up
 
-![Title Menu](../../images/TitleMenu.gif)
+
 
 ## 3. Special Requirements
 
