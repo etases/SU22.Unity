@@ -3,45 +3,48 @@ using UnityEngine;
 
 public class Storage : MonoBehaviour
 {
-    private string _path;
-    // Start is called before the first frame update
-    public Data Data { get; private set; }
+    public bool saveOnDestroy;
 
-    void Awake()
+    private string m_Path;
+
+    // Start is called before the first frame update
+    public Data data { get; private set; }
+
+    private void Awake()
     {
-        _path = Application.persistentDataPath + "/data.json";
+        m_Path = Application.persistentDataPath + "/data.json";
         LoadData();
     }
 
-    void LoadData()
+    private void OnDestroy()
     {
-        if (File.Exists(_path))
+        Debug.Log("Saving data");
+        if (saveOnDestroy) SaveData();
+    }
+
+    private void LoadData()
+    {
+        if (File.Exists(m_Path))
         {
-            string dataAsJson = File.ReadAllText(_path);
-            Data = JsonUtility.FromJson<Data>(dataAsJson);
-            Debug.Log("Loaded data from " + _path);
+            var dataAsJson = File.ReadAllText(m_Path);
+            data = JsonUtility.FromJson<Data>(dataAsJson);
+            Debug.Log("Loaded data from " + m_Path);
         }
-        else
-        {
-            Data = new();
-            Debug.Log("Created new data");
-        }
+
+        if (data != null) return;
+        data = new Data();
+        Debug.Log("Created new data");
     }
 
     public void SaveData()
     {
-        string dataAsJson = JsonUtility.ToJson(Data, true);
-        File.WriteAllText(_path, dataAsJson);
+        var dataAsJson = JsonUtility.ToJson(data, true);
+        File.WriteAllText(m_Path, dataAsJson);
     }
 
     public void ResetData()
     {
-        Data = new();
-        SaveData();
-    }
-
-    void OnDestroy()
-    {
+        data = new Data();
         SaveData();
     }
 }
@@ -49,6 +52,22 @@ public class Storage : MonoBehaviour
 public class Data
 {
     public float bgm = 1;
+    public bool hasPlayerSaved;
+    public bool isGrounded;
+    public float jumpSpeed = Jumper.dJumpSpeed;
+    public Vector3 location;
+    public bool remake = false;
     public float sfx = 1;
-    public string location = string.Empty;
+    public Vector2 velocity = Vector2.zero;
+    public float walkSpeed = Jumper.dWalkSpeed;
+
+    public void ResetPlayer()
+    {
+        hasPlayerSaved = false;
+        location = Vector3.zero;
+        velocity = Vector2.zero;
+        isGrounded = false;
+        jumpSpeed = Jumper.dJumpSpeed;
+        walkSpeed = Jumper.dWalkSpeed;
+    }
 }

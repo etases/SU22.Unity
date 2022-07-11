@@ -5,7 +5,7 @@ public class NotAPlatform : Platform
 {
     public float delay = 1f;
     private bool m_IsInAction;
-    private SpriteRenderer m_SpriteRenderer;
+    private Renderer m_Renderer;
 
     public NotAPlatform() : base(true)
     {
@@ -14,12 +14,12 @@ public class NotAPlatform : Platform
     protected override void Awake()
     {
         base.Awake();
-        m_SpriteRenderer = GetComponent<SpriteRenderer>();
+        m_Renderer = GetComponent<Renderer>();
     }
 
     private void SetActive(bool active)
     {
-        m_SpriteRenderer.enabled = active;
+        m_Renderer.enabled = active;
         collider2D.enabled = active;
     }
 

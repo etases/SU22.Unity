@@ -4,6 +4,7 @@ using UnityEngine;
 public abstract class BasePowerUp : MonoBehaviour
 {
     [SerializeField] public string id = string.Empty;
+    private SimpleEventManager m_EventManager;
 
     private string powerUpName => "PowerUp_" + id;
 

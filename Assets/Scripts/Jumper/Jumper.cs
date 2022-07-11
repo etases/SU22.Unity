@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Jumper : MonoBehaviour
 {
@@ -7,36 +9,80 @@ public class Jumper : MonoBehaviour
     public const float dJumpCharge = 0.05f;
     public const float dJumpChargeMax = 10f;
 
-    [Header("Speed Settings")]
-    public float walkSpeed = dWalkSpeed;
+    [Header("Speed Settings")] public float walkSpeed = dWalkSpeed;
+
     public float jumpSpeed = dJumpSpeed;
     public float jumpCharge = dJumpCharge;
     public float jumpChargeMax = dJumpChargeMax;
 
-    [Header("Status")]
-    public float moveInput;
+    [Header("Status")] public float moveInput;
+
     public float jumpValue;
     public float jumpDirection;
     public bool isGrounded; // check if game object is touching the platform
+
+    [Header("Serialize")] [SerializeField] public PhysicsMaterial2D normalMat; //value = 0
+
+    public PhysicsMaterial2D bouncyMat; //value = 0.7
     private Animator anim;
-    
-    [Header("Serialize")]
-    [SerializeField]
-    public PhysicsMaterial2D normalMat;//value = 0
-    public PhysicsMaterial2D bouncyMat;//value = 0.7
 
     private Rigidbody2D rb;
     private SpriteRenderer spRender;
+    private Storage storage;
 
     private void Start()
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
         spRender = gameObject.GetComponent<SpriteRenderer>();
         anim = gameObject.GetComponent<Animator>();
+        storage = FindObjectOfType<Storage>();
+        if (storage == null) throw new Exception("Storage not found");
+
+        if (!storage.data.hasPlayerSaved) return;
+        transform.position = storage.data.location;
+        rb.velocity = storage.data.velocity;
+        isGrounded = storage.data.isGrounded;
+        jumpSpeed = storage.data.jumpSpeed;
+        walkSpeed = storage.data.walkSpeed;
     }
 
     private void Update()
     {
+        if (storage != null)
+        {
+            if (StaticVariables.shouldLoadPlayerValue)
+            {
+                if (storage.data.hasPlayerSaved)
+                {
+                    transform.position = storage.data.location;
+                    rb.velocity = storage.data.velocity;
+                    isGrounded = storage.data.isGrounded;
+                    jumpSpeed = storage.data.jumpSpeed;
+                    walkSpeed = storage.data.walkSpeed;
+                    Debug.Log("Loaded data value");
+                }
+
+                StaticVariables.shouldLoadPlayerValue = false;
+            }
+            else
+            {
+                storage.data.hasPlayerSaved = true;
+                storage.data.location = transform.position;
+                storage.data.velocity = rb.velocity;
+                storage.data.isGrounded = isGrounded;
+                storage.data.jumpSpeed = jumpSpeed;
+                storage.data.walkSpeed = walkSpeed;
+            }
+        }
+
+        if (Input.GetKeyDown("escape"))
+        {
+            StaticVariables.shouldLoadPlayerValue = true;
+            PauseMenu.gameIsPaused = true;
+            SceneManager.LoadScene("PauseMenu", LoadSceneMode.Single);
+            return;
+        }
+
         // Check Is Grounded
         if (isGrounded)
         {
@@ -47,7 +93,7 @@ public class Jumper : MonoBehaviour
             isGrounded = rb.velocity.y == 0;
             // change material
             rb.sharedMaterial = rb.velocity.y > 0 ? bouncyMat : normalMat;
-            
+
             // Event
             if (isGrounded)
                 SimpleEventManager.TriggerEvent("GroundEvent", new EventData
@@ -64,13 +110,14 @@ public class Jumper : MonoBehaviour
 
         moveInput = Input.GetAxisRaw("Horizontal");
         var isJump = Input.GetAxisRaw("Jump") != 0;
-        
+
         // Short key Q & E
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKey(KeyCode.Q))
         {
             isJump = true;
             moveInput = -1;
-        } else if (Input.GetKeyDown(KeyCode.E))
+        }
+        else if (Input.GetKey(KeyCode.E))
         {
             isJump = true;
             moveInput = 1;
@@ -109,12 +156,10 @@ public class Jumper : MonoBehaviour
             {
                 rb.velocity = new Vector2(moveInput * walkSpeed, rb.velocity.y);
                 if (moveInput != 0)
-                {
                     SimpleEventManager.TriggerEvent("WalkEvent", new EventData
                     {
                         {"jumper", this}
                     });
-                }
             }
         }
     }
