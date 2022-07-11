@@ -1,0 +1,96 @@
+<mxfile host="app.diagrams.net" modified="2022-07-11T05:43:29.132Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36" etag="imXBCVKmT8euMSjgVBbN" version="20.0.4" type="github">
+  <diagram id="wI13K2gkvMTZhB_VzKQL" name="Page-1">
+    <mxGraphModel dx="1019" dy="576" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="KeZVKDTYgivzONgHedd0-2" value="" style="shape=table;html=1;whiteSpace=wrap;startSize=0;container=1;collapsible=0;childLayout=tableLayout;" parent="1" vertex="1">
+          <mxGeometry x="200" y="160" width="480.0000000000002" height="520" as="geometry" />
+        </mxCell>
+        <mxCell id="KeZVKDTYgivzONgHedd0-3" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;top=0;left=0;bottom=0;right=0;collapsible=0;dropTarget=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="KeZVKDTYgivzONgHedd0-2" vertex="1">
+          <mxGeometry width="480.0000000000002" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="KeZVKDTYgivzONgHedd0-4" value="User" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;" parent="KeZVKDTYgivzONgHedd0-3" vertex="1">
+          <mxGeometry width="160" height="30" as="geometry">
+            <mxRectangle width="160" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="KeZVKDTYgivzONgHedd0-5" value="User interface&amp;nbsp;" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;" parent="KeZVKDTYgivzONgHedd0-3" vertex="1">
+          <mxGeometry x="160" width="160" height="30" as="geometry">
+            <mxRectangle width="160" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="KeZVKDTYgivzONgHedd0-6" value="Controller&amp;nbsp;" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;" parent="KeZVKDTYgivzONgHedd0-3" vertex="1">
+          <mxGeometry x="320" width="160" height="30" as="geometry">
+            <mxRectangle width="160" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="KeZVKDTYgivzONgHedd0-7" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;top=0;left=0;bottom=0;right=0;collapsible=0;dropTarget=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="KeZVKDTYgivzONgHedd0-2" vertex="1">
+          <mxGeometry y="30" width="480.0000000000002" height="490" as="geometry" />
+        </mxCell>
+        <mxCell id="KeZVKDTYgivzONgHedd0-8" value="" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;" parent="KeZVKDTYgivzONgHedd0-7" vertex="1">
+          <mxGeometry width="160" height="490" as="geometry">
+            <mxRectangle width="160" height="490" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="KeZVKDTYgivzONgHedd0-9" value="" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;" parent="KeZVKDTYgivzONgHedd0-7" vertex="1">
+          <mxGeometry x="160" width="160" height="490" as="geometry">
+            <mxRectangle width="160" height="490" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="KeZVKDTYgivzONgHedd0-10" value="" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;" parent="KeZVKDTYgivzONgHedd0-7" vertex="1">
+          <mxGeometry x="320" width="160" height="490" as="geometry">
+            <mxRectangle width="160" height="490" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="KeZVKDTYgivzONgHedd0-19" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=1;" parent="1" source="KeZVKDTYgivzONgHedd0-15" target="KeZVKDTYgivzONgHedd0-16" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="KeZVKDTYgivzONgHedd0-15" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#FFFFFF;strokeColor=#000000;" parent="1" vertex="1">
+          <mxGeometry x="267.5" y="220" width="30" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="KeZVKDTYgivzONgHedd0-18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="KeZVKDTYgivzONgHedd0-16" target="KeZVKDTYgivzONgHedd0-17" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="KeZVKDTYgivzONgHedd0-16" value="Press movement button(s)" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#82b366;fillColor=#d5e8d4;" parent="1" vertex="1">
+          <mxGeometry x="220" y="290" width="125" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="KeZVKDTYgivzONgHedd0-21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="KeZVKDTYgivzONgHedd0-17" target="KeZVKDTYgivzONgHedd0-20" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="KeZVKDTYgivzONgHedd0-17" value="Check conditions and values" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#6c8ebf;fillColor=#dae8fc;fontColor=#333333;" parent="1" vertex="1">
+          <mxGeometry x="540" y="290" width="125" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="KeZVKDTYgivzONgHedd0-25" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="KeZVKDTYgivzONgHedd0-20" target="KeZVKDTYgivzONgHedd0-22" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="603" y="500" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="KeZVKDTYgivzONgHedd0-20" value="Calculate character position and animation&amp;nbsp;" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#6c8ebf;fillColor=#dae8fc;" parent="1" vertex="1">
+          <mxGeometry x="540" y="390" width="125" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="KeZVKDTYgivzONgHedd0-26" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="KeZVKDTYgivzONgHedd0-22" target="KeZVKDTYgivzONgHedd0-23" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="440" y="560" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="KeZVKDTYgivzONgHedd0-22" value="Set character new&lt;span style=&quot;color: rgba(0, 0, 0, 0); font-family: monospace; font-size: 0px; text-align: start;&quot;&gt;%3CmxGraphModel%3E%3Croot%3E%3CmxCell%20id%3D%220%22%2F%3E%3CmxCell%20id%3D%221%22%20parent%3D%220%22%2F%3E%3CmxCell%20id%3D%222%22%20value%3D%22Calculate%20character%20position%20and%20animation%26amp%3Bnbsp%3B%22%20style%3D%22rounded%3D1%3BwhiteSpace%3Dwrap%3Bhtml%3D1%3BstrokeColor%3D%23000000%3BfillColor%3D%23FFFFFF%3B%22%20vertex%3D%221%22%20parent%3D%221%22%3E%3CmxGeometry%20x%3D%22540%22%20y%3D%22400%22%20width%3D%22125%22%20height%3D%2260%22%20as%3D%22geometry%22%2F%3E%3C%2FmxCell%3E%3C%2Froot%3E%3C%2FmxGraphModel%3E&lt;/span&gt;&lt;br&gt;position and animation&amp;nbsp;" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#d79b00;fillColor=#ffe6cc;" parent="1" vertex="1">
+          <mxGeometry x="377.5" y="470" width="125" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="KeZVKDTYgivzONgHedd0-27" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="KeZVKDTYgivzONgHedd0-23" target="KeZVKDTYgivzONgHedd0-24" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="KeZVKDTYgivzONgHedd0-23" value="Press Menu button" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#82b366;fillColor=#d5e8d4;" parent="1" vertex="1">
+          <mxGeometry x="220" y="530" width="125" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="KeZVKDTYgivzONgHedd0-24" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#FFFFFF;strokeColor=#000000;" parent="1" vertex="1">
+          <mxGeometry x="267.5" y="630" width="30" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
