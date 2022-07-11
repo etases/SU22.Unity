@@ -13,7 +13,7 @@
 - [4. Preconditions](#4-preconditions)
 - [4.1 Level loaded](#41-level-loaded-visible)
 - [5. Postconditions](#5-postconditions)
-  - [5.1 Character position updated](#51-position -updated)
+  - [5.1 Character position updated](#51-position-updated)
 - [6. Extension Points](#6-extension-points)
 
 
