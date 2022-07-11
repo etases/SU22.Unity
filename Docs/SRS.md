@@ -83,7 +83,7 @@ JumpKingGame's goal is to create a Platform game for gamers with puzzle adventur
 
 ### 2.3 Use Cases
 
-[Use Case: Player Controler](https://github.com/GyroInc/gyrogame-unity/blob/master/Documentation/UseCases/PlayerMovement/UC_PlayerMovement.md)
+[Use Case: Player Controler](https://github.com/etases/SU22.Unity/blob/Document/Docs/UseCases/PlayerControler/AD_PlayerControler.png)
 
 [Use Case:  Power Up](https://github.com/GyroInc/gyrogame-unity/blob/master/Documentation/UseCases/PauseMenu/UC_PauseMenu.md)
 
