@@ -14,7 +14,7 @@
 - [4.1 Level loaded](#41-level-loaded)
 - [4.2 Character interaction](#42-character-interaction)
 - [5. Postconditions](#5-postconditions)
-  - [5.1 Character power update](#51-character-power-updated)
+  - [5.1 Character power updated](#51-character-power-updated)
 - [6. Extension Points](#6-extension-points)
 
 
