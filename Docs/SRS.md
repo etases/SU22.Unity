@@ -4,7 +4,7 @@
 > # JumpKingGame - Software Requirements Specification
 
 ## Table of Contents
-- [JumpKingGame - Software Requirements Specification]
+- JumpKingGame - Software Requirements Specification
   - [Table of Contents](#table-of-contents)
   - [1. Introduction](#1-introduction)
     - [1.1 Purpose](#11-purpose)
