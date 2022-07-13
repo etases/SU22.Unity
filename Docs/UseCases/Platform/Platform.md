@@ -21,7 +21,7 @@
 ## Connect Controller Cube
 
 ### 1.1 Brief Description
-Character values can change when interacting with an power up source, which can be beneficial or detrimental to the player during gameplay.
+Platform is require for more interesting gameplay experience, each platform properties can be harm or benefit user during gameplay. 
 
 ## 2. Flow of Events
 
