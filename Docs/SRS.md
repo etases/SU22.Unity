@@ -85,11 +85,11 @@ JumpKingGame's goal is to create a Platform game for gamers with puzzle adventur
 
 [Use Case: Player Controler](https://github.com/etases/SU22.Unity/blob/Document/Docs/UseCases/PlayerControler/UC_PlayerControler.md)
 
-[Use Case:  Power Up](https://github.com/etases/SU22.Unity/blob/Document/Docs/UseCases/PowerUp/PowerUp.md)
+[Use Case:  Power Up](https://github.com/etases/SU22.Unity/blob/Document/Docs/UseCases/PowerUp/UC_PowerUp.md)
 
-[Use Case: Platform](https://github.com/etases/SU22.Unity/blob/Document/Docs/UseCases/Platform/Platform.md)
+[Use Case: Platform](https://github.com/etases/SU22.Unity/blob/Document/Docs/UseCases/Platform/UC_Platform.md)
 
-[Use Case: Menu](https://github.com/etases/SU22.Unity/blob/Document/Docs/UseCases/Menu/Menu.md)
+[Use Case: Menu](https://github.com/etases/SU22.Unity/blob/Document/Docs/UseCases/Menu/UC_Menu.md)
 
 
 ### 2.4 User Characteristics
