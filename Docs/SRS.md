@@ -85,11 +85,11 @@ JumpKingGame's goal is to create a Platform game for gamers with puzzle adventur
 
 [Use Case: Player Controler](https://github.com/etases/SU22.Unity/blob/Document/Docs/UseCases/PlayerControler/UC_PlayerControler.md)
 
-[Use Case:  Power Up](https://github.com/GyroInc/gyrogame-unity/blob/master/Documentation/UseCases/PauseMenu/UC_PauseMenu.md)
+[Use Case:  Power Up](https://github.com/etases/SU22.Unity/blob/Document/Docs/UseCases/PlayerControler/UC_PowerUp.md)
 
-[Use Case: Flatform](https://github.com/GyroInc/gyrogame-unity/blob/master/Documentation/UseCases/ConnectCube/UC_ConnectCube.md)
+[Use Case: Platform](https://github.com/etases/SU22.Unity/blob/Document/Docs/UseCases/PlayerControler/UC_Platform.md)
 
-[Use Case: Menu](https://github.com/GyroInc/gyrogame-unity/blob/master/Documentation/UseCases/RotateObstacle/UC_RotateObstacle.md)
+[Use Case: Menu](https://github.com/etases/SU22.Unity/blob/Document/Docs/UseCases/PlayerControler/UC_Menu.md)
 
 
 ### 2.4 User Characteristics
