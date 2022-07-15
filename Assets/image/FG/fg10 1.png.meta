@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 3b2ada908908a2e4a970d408ac97936e
+guid: 0e8838a92a7297a41af807cf3b54c9d1
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -33,7 +33,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -48,7 +48,7 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
-  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteBorder: {x: 205, y: 0, z: 0, w: 129}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
@@ -104,43 +104,148 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: checkbox_0
+      name: fg10 1_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 1
-        width: 9
-        height: 9
+        y: 0
+        width: 345
+        height: 360
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 17a539025e07dcd469d6a0ea159cc7ab
-      internalID: 1259098567
+      spriteID: 99e775c07dfe725428ebc688fe2bf0f9
+      internalID: 120341799
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: checkbox_1
+      name: fg10 1_1
       rect:
         serializedVersion: 2
-        x: 10
-        y: 1
-        width: 9
-        height: 9
+        x: 344
+        y: 303
+        width: 50
+        height: 34
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 84f77d350985ef54eb78b0bfefce6102
-      internalID: 687230416
+      spriteID: 41732d0ba7668c840a89892a3e925f45
+      internalID: 79095789
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fg10 1_2
+      rect:
+        serializedVersion: 2
+        x: 435
+        y: 301
+        width: 45
+        height: 59
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 29ae69c26f9dc314a9be613699fbe6c1
+      internalID: 432340071
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fg10 1_3
+      rect:
+        serializedVersion: 2
+        x: 440
+        y: 298
+        width: 5
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d07dcaddad4335a419df56fdfd6f9b92
+      internalID: -1041389487
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fg10 1_4
+      rect:
+        serializedVersion: 2
+        x: 246
+        y: 240
+        width: 52
+        height: 40
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d95d811db81c7e042ba1f3dad36b5a3e
+      internalID: 445451429
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fg10 1_5
+      rect:
+        serializedVersion: 2
+        x: 343
+        y: 240
+        width: 50
+        height: 53
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c38339ee8b0d1c74da5a04c40cc2bbc1
+      internalID: -669752907
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fg10 1_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 480
+        height: 110
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b221cd604471634696e481ff63f01c4
+      internalID: -1176867029
       vertices: []
       indices: 
       edges: []
@@ -149,15 +254,20 @@ TextureImporter:
     physicsShape: []
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
-    internalID: 0
+    internalID: 1537655665
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      checkbox_0: 1259098567
-      checkbox_1: 687230416
+      fg10 1_5: -669752907
+      fg10 1_0: 120341799
+      fg10 1_4: 445451429
+      fg10 1_3: -1041389487
+      fg10 1_2: 432340071
+      fg10 1_6: -1176867029
+      fg10 1_1: 79095789
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
